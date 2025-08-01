@@ -7,19 +7,21 @@ namespace MagmaWorks.Uncertainties.Models
     {
         public double Mean { get; }
         public double StandardDeviation { get; }
+        public double CoverageFactor { get; }
 
-        public NormalDistributionUncertaintyModel(double mean, double stddev)
+        public NormalDistributionUncertaintyModel(double mean, double stdDev, double coverageFactor = 3.0)
         {
-            if (stddev < 0)
+            if (stdDev < 0)
                 throw new ArgumentException("Standard deviation must be non-negative.");
 
             Mean = mean;
-            StandardDeviation = stddev;
+            StandardDeviation = stdDev;
+            CoverageFactor = coverageFactor;
         }
 
         public double CentralValue => Mean;
-        public double LowerBound => Mean - 3 * StandardDeviation;
-        public double UpperBound => Mean + 3 * StandardDeviation;
+        public double LowerBound => Mean - CoverageFactor * StandardDeviation;
+        public double UpperBound => Mean + CoverageFactor * StandardDeviation;
 
         public IUncertaintyModel PropagateBinary(IUncertaintyModel other, Func<double, double, double> op)
         {

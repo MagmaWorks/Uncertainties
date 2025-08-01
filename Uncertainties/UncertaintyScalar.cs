@@ -1,26 +1,46 @@
 ﻿#if NET8_0_OR_GREATER
 using System;
-using System.Numerics;
+using MagmaWorks.Uncertainties.Models;
+using UnitsNet;
 
 namespace MagmaWorks.Uncertainties
 {
-    public class UncertaintyScalar<T> : IUncertainty<T> where T : INumber<T>
+    public class UncertaintyScalar : UncertaintyScalar<double>
     {
-        public T CentralValue { get; }
-        public IUncertaintyModel Model { get; }
-        public T LowerBound => T.CreateChecked(Model.LowerBound);
-        public T UpperBound => T.CreateChecked(Model.UpperBound);
-
-        public UncertaintyScalar(T centralValue, IUncertaintyModel model)
+        public UncertaintyScalar(double centralValue, IUncertaintyModel model) : base(centralValue, model)
         {
-            CentralValue = centralValue;
-            Model = model;
         }
 
-        internal UncertaintyScalar<T> CloneWithTransformedModel(Func<double, double> transform)
+        public static UncertaintyScalar FromAbsoluteUncertainty(
+            double centralValue, double absoluteUncertainty)
         {
-            var newModel = Model.PropagateUnary(transform);
-            return new UncertaintyScalar<T>((T)(object)newModel.CentralValue, newModel);
+            return new UncertaintyScalar(
+                centralValue,
+                new AbsoluteUncertaintyModel(Convert.ToDouble(centralValue), absoluteUncertainty));
+        }
+
+        public static UncertaintyScalar FromRelativeUncertainty(
+            double centralValue, double relativeUncertainty)
+        {
+            return new UncertaintyScalar(
+                centralValue,
+                new RelativeUncertaintyModel(Convert.ToDouble(centralValue), relativeUncertainty));
+        }
+
+        public static UncertaintyScalar FromIntervalUncertainty(
+            double centralValue, double lowerBound, double upperBound)
+        {
+            return new UncertaintyScalar(
+                centralValue,
+                new IntervalUncertaintyModel(lowerBound, upperBound));
+        }
+
+        public static UncertaintyScalar FromNormalDistributionUncertainty(
+            double centralValue, double standardDeviation, double coverageFactor = 3.0)
+        {
+            return new UncertaintyScalar(
+                centralValue,
+                new NormalDistributionUncertaintyModel(Convert.ToDouble(centralValue), standardDeviation, coverageFactor));
         }
     }
 }
