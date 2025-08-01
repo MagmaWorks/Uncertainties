@@ -7,13 +7,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
-	  <LangVersion>8.0</LangVersion>
+	  <LangVersion>10.0</LangVersion>
     <Platforms>AnyCPU</Platforms>
-    <RootNamespace>MagmaWorks.Template</RootNamespace>
+    <RootNamespace>MagmaWorks.Uncertainties</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>MagmaWorks Template</Title>
+    <Title>MagmaWorks Uncertainties</Title>
     <Company>Whitby Wood</Company>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -29,12 +29,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\ITemplate\MagmaWorks.ITemplate.csproj" />
+    <ProjectReference Include="..\IUncertainties\MagmaWorks.IUncertainties.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>TemplateTests</_Parameter1>
+      <_Parameter1>UncertaintiesTests</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 

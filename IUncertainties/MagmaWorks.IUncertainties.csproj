@@ -7,13 +7,13 @@
 
   <PropertyGroup>
 	<TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
-	  <LangVersion>8.0</LangVersion>
+	  <LangVersion>10.0</LangVersion>
     <Platforms>AnyCPU</Platforms>
-    <RootNamespace>MagmaWorks.Template</RootNamespace>
+    <RootNamespace>MagmaWorks.Uncertainties</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>MagmaWorks Template Interfaces</Title>
+    <Title>MagmaWorks Uncertainties Interfaces</Title>
     <Company>Whitby Wood</Company>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -26,7 +26,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OasysUnits" Version="1.2.1" />
   </ItemGroup>
 
   <ItemGroup>

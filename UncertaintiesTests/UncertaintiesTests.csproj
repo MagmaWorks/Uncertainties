@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-    <PackageReference Include="OasysUnits.Serialization.JsonNet" Version="1.2.1" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,9 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Template\MagmaWorks.Template.csproj" />
-    <ProjectReference Include="..\ITemplate\MagmaWorks.ITemplate.csproj" />
-    <ProjectReference Include="..\Serialization\MagmaWorks.Template.Serialization.csproj" />
+    <ProjectReference Include="..\Uncertainties\MagmaWorks.Uncertainties.csproj" />
+    <ProjectReference Include="..\IUncertainties\MagmaWorks.IUncertainties.csproj" />
   </ItemGroup>
 
 </Project>
