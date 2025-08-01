@@ -72,5 +72,57 @@
             Assert.Equal(45.0, result.LowerBound.KilometersPerHour, 6);
             Assert.Equal(75.0, result.UpperBound.KilometersPerHour, 6);
         }
+
+        [Fact]
+        public void Scalar_Multiplication_WithRelativeUncertainty_CombinesCorrectly()
+        {
+            var a = 100.0.WithRelativeUncertainty(0.1); // 10%
+            var factor = 2.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(200.0, result.CentralValue, 6);
+            Assert.Equal(180.0, result.LowerBound, 6);  // 200 * (1 - 0.1)
+            Assert.Equal(220.0, result.UpperBound, 6);  // 200 * (1 + 0.1)
+        }
+
+        [Fact]
+        public void Scalar_Division_WithRelativeUncertainty_CombinesCorrectly()
+        {
+            var a = 100.0.WithRelativeUncertainty(0.2); // 20%
+            var divisor = 2.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(50.0, result.CentralValue, 6);
+            Assert.Equal(40.0, result.LowerBound, 6);  // 50 * (1 - 0.2)
+            Assert.Equal(60.0, result.UpperBound, 6);  // 50 * (1 + 0.2)
+        }
+
+        [Fact]
+        public void Quantity_Multiplication_WithRelativeUncertainty_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(100).WithRelativeUncertainty(0.05); // 5%
+            var factor = 4.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(400.0, result.CentralValue.Meters, 6);
+            Assert.Equal(380.0, result.LowerBound.Meters, 6);
+            Assert.Equal(420.0, result.UpperBound.Meters, 6);
+        }
+
+        [Fact]
+        public void Quantity_Division_WithRelativeUncertainty_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(50).WithRelativeUncertainty(0.1); // 10%
+            var divisor = 2.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(25.0, result.CentralValue.Meters, 6);
+            Assert.Equal(22.5, result.LowerBound.Meters, 6);
+            Assert.Equal(27.5, result.UpperBound.Meters, 6);
+        }
     }
 }

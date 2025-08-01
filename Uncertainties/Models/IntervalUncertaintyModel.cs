@@ -37,13 +37,9 @@ namespace MagmaWorks.Uncertainties.Models
 
         public IUncertaintyModel PropagateUnary(Func<double, double> op)
         {
-            double newLow = op(LowerBound);
-            double newHigh = op(UpperBound);
-
-            return new IntervalUncertaintyModel(
-                Math.Min(newLow, newHigh),
-                Math.Max(newLow, newHigh)
-            );
+            var low = op(LowerBound);
+            var high = op(UpperBound);
+            return new IntervalUncertaintyModel(Math.Min(low, high), Math.Max(low, high));
         }
     }
 }

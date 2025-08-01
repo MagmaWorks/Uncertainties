@@ -36,5 +36,25 @@ namespace MagmaWorks.Uncertainties.Utility
             var resultModel = a.Model.PropagateBinary(b.Model, (x, y) => x - y);
             return new UncertaintyQuantity<TQuantity>((TQuantity)resultValue, resultModel);
         }
+
+        public static UncertaintyQuantity<TQuantity> Multiply<TQuantity>(
+            this UncertaintyQuantity<TQuantity> a, double factor)
+            where TQuantity : IQuantity
+        {
+            var newQuantity = Quantity.From((double)a.CentralValue.Value * factor, a.CentralValue.Unit);
+            var newModel = a.Model.PropagateUnary(x => x * factor);
+
+            return new UncertaintyQuantity<TQuantity>((TQuantity)newQuantity, newModel);
+        }
+
+        public static UncertaintyQuantity<TQuantity> Divide<TQuantity>(
+            this UncertaintyQuantity<TQuantity> a, double divisor)
+            where TQuantity : IQuantity
+        {
+            var newQuantity = Quantity.From((double)a.CentralValue.Value / divisor, a.CentralValue.Unit);
+            var newModel = a.Model.PropagateUnary(x => x / divisor);
+
+            return new UncertaintyQuantity<TQuantity>((TQuantity)newQuantity, newModel);
+        }
     }
 }

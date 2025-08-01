@@ -82,5 +82,58 @@
             Assert.InRange(result.LowerBound.KilometersPerHour, 46.5, 46.6); // 60 - 3*4.472
             Assert.InRange(result.UpperBound.KilometersPerHour, 73.4, 73.5); // 60 + 3*4.472
         }
+
+        [Fact]
+        public void Scalar_Multiplication_WithNormalDistribution_CombinesCorrectly()
+        {
+            var a = 100.0.WithNormalDistributionUncertainty(5);
+            var factor = 2.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(200.0, result.CentralValue, 6);
+            Assert.InRange(result.LowerBound, 170.0, 170.1); // 200 - 3*10
+            Assert.InRange(result.UpperBound, 230.0, 230.1); // 200 + 3*10
+        }
+
+        [Fact]
+        public void Scalar_Division_WithNormalDistribution_CombinesCorrectly()
+        {
+            var a = 100.0.WithNormalDistributionUncertainty(10);
+            var divisor = 2.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(50.0, result.CentralValue, 6);
+            Assert.InRange(result.LowerBound, 35.0, 35.1);
+            Assert.InRange(result.UpperBound, 65.0, 65.1);
+        }
+
+        [Fact]
+        public void Quantity_Multiplication_WithNormalDistribution_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(60).WithNormalDistributionUncertainty(2);
+            var factor = 3.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(180.0, result.CentralValue.Meters, 6);
+            Assert.InRange(result.LowerBound.Meters, 162.0, 162.1);
+            Assert.InRange(result.UpperBound.Meters, 198.0, 198.1);
+        }
+
+        [Fact]
+        public void Quantity_Division_WithNormalDistribution_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(60).WithNormalDistributionUncertainty(3);
+            var divisor = 3.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(20.0, result.CentralValue.Meters, 6);
+            Assert.InRange(result.LowerBound.Meters, 17.0, 17.1);
+            Assert.InRange(result.UpperBound.Meters, 23.0, 23.1);
+
+        }
     }
 }

@@ -45,8 +45,8 @@ namespace MagmaWorks.Uncertainties.Models
 
         public IUncertaintyModel PropagateUnary(Func<double, double> op)
         {
-            double result = op(CentralValue);
-            return new RelativeUncertaintyModel(result, RelativeUncertainty);
+            var newCentral = op(CentralValue);
+            return new RelativeUncertaintyModel(newCentral, RelativeUncertainty);
         }
     }
 }

@@ -37,8 +37,10 @@ namespace MagmaWorks.Uncertainties.Models
 
         public IUncertaintyModel PropagateUnary(Func<double, double> op)
         {
-            double newMean = op(Mean);
-            return new NormalDistributionUncertaintyModel(newMean, StandardDeviation);
+            var newCentral = op(CentralValue);
+            var factor = Math.Abs(op(1.0));
+            var newSigma = StandardDeviation * factor;
+            return new NormalDistributionUncertaintyModel(newCentral, newSigma);
         }
     }
 }

@@ -39,10 +39,12 @@ namespace MagmaWorks.Uncertainties.Models
             return new IntervalUncertaintyModel(candidates.Min(), candidates.Max());
         }
 
-        public IUncertaintyModel PropagateUnary(Func<double, double> operation)
+        public IUncertaintyModel PropagateUnary(Func<double, double> op)
         {
-            double newValue = operation(CentralValue);
-            return new AbsoluteUncertaintyModel(newValue, AbsoluteUncertainty);
+            var newCentral = op(CentralValue);
+            var factor = Math.Abs(op(1.0)); // scale uncertainty
+            var newUncertainty = AbsoluteUncertainty * factor;
+            return new AbsoluteUncertaintyModel(newCentral, newUncertainty);
         }
     }
 }

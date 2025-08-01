@@ -1,4 +1,5 @@
-﻿using MagmaWorks.Uncertainties.Utility;
+﻿using System;
+using MagmaWorks.Uncertainties.Utility;
 using UnitsNet;
 
 namespace MagmaWorks.Uncertainties
@@ -14,6 +15,13 @@ namespace MagmaWorks.Uncertainties
         {
             CentralValue = value;
             Model = model;
+        }
+
+        internal UncertaintyQuantity<TQuantity> CloneWithTransformedModel(Func<double, double> transform)
+        {
+            var newModel = Model.PropagateUnary(transform);
+            var newQuantity = Quantity.From((double)newModel.CentralValue, CentralValue.Unit);
+            return new UncertaintyQuantity<TQuantity>((TQuantity)newQuantity, newModel);
         }
     }
 }

@@ -75,5 +75,57 @@ namespace MagmaWorks.Uncertainties.Tests
             Assert.Equal(42.5, result.LowerBound.Meters, 6);
             Assert.Equal(57.5, result.UpperBound.Meters, 6);
         }
+
+        [Fact]
+        public void Scalar_Multiplication_WithAbsoluteUncertainty_CombinesCorrectly()
+        {
+            var a = 100.0.WithAbsoluteUncertainty(5);
+            var factor = 2.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(200.0, result.CentralValue, 6);
+            Assert.Equal(190.0, result.LowerBound, 6);  // 200 - 10
+            Assert.Equal(210.0, result.UpperBound, 6); // 200 + 10
+        }
+
+        [Fact]
+        public void Scalar_Division_WithAbsoluteUncertainty_CombinesCorrectly()
+        {
+            var a = 100.0.WithAbsoluteUncertainty(10);
+            var divisor = 2.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(50.0, result.CentralValue, 6);
+            Assert.Equal(45.0, result.LowerBound, 6);  // 50 - 5
+            Assert.Equal(55.0, result.UpperBound, 6);  // 50 + 5
+        }
+
+        [Fact]
+        public void Quantity_Multiplication_WithAbsoluteUncertainty_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(100).WithAbsoluteUncertainty(5);
+            var factor = 3.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(300.0, result.CentralValue.Meters, 6);
+            Assert.Equal(285.0, result.LowerBound.Meters, 6);
+            Assert.Equal(315.0, result.UpperBound.Meters, 6);
+        }
+
+        [Fact]
+        public void Quantity_Division_WithAbsoluteUncertainty_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(150).WithAbsoluteUncertainty(15);
+            var divisor = 3.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(50.0, result.CentralValue.Meters, 6);
+            Assert.Equal(45.0, result.LowerBound.Meters, 6);
+            Assert.Equal(55.0, result.UpperBound.Meters, 6);
+        }
     }
 }

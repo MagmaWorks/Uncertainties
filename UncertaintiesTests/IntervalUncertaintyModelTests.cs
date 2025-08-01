@@ -82,5 +82,57 @@
             Assert.Equal(10, result.LowerBound.DegreesCelsius, 6);
             Assert.Equal(19, result.UpperBound.DegreesCelsius, 6);
         }
+
+        [Fact]
+        public void Scalar_Multiplication_WithIntervalUncertainty_CombinesCorrectly()
+        {
+            var a = 100.0.WithIntervalUncertainty(90, 110);
+            var factor = 2.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(200.0, result.CentralValue, 6);
+            Assert.Equal(180.0, result.LowerBound, 6);
+            Assert.Equal(220.0, result.UpperBound, 6);
+        }
+
+        [Fact]
+        public void Scalar_Division_WithIntervalUncertainty_CombinesCorrectly()
+        {
+            var a = 100.0.WithIntervalUncertainty(80, 120);
+            var divisor = 2.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(50.0, result.CentralValue, 6);
+            Assert.Equal(40.0, result.LowerBound, 6);
+            Assert.Equal(60.0, result.UpperBound, 6);
+        }
+
+        [Fact]
+        public void Quantity_Multiplication_WithIntervalUncertainty_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(100).WithIntervalUncertainty(90, 110);
+            var factor = 3.0;
+
+            var result = a.Multiply(factor);
+
+            Assert.Equal(300.0, result.CentralValue.Meters, 6);
+            Assert.Equal(270.0, result.LowerBound.Meters, 6);
+            Assert.Equal(330.0, result.UpperBound.Meters, 6);
+        }
+
+        [Fact]
+        public void Quantity_Division_WithIntervalUncertainty_CombinesCorrectly()
+        {
+            var a = Length.FromMeters(150).WithIntervalUncertainty(120, 180);
+            var divisor = 3.0;
+
+            var result = a.Divide(divisor);
+
+            Assert.Equal(50.0, result.CentralValue.Meters, 6);
+            Assert.Equal(40.0, result.LowerBound.Meters, 6);
+            Assert.Equal(60.0, result.UpperBound.Meters, 6);
+        }
     }
 }
