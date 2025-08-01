@@ -1,6 +1,4 @@
-﻿using UnitsNet;
-
-namespace MagmaWorks.Uncertainties.Tests
+﻿namespace MagmaWorks.Uncertainties.Tests
 {
     public class AbsoluteUncertaintyModelTests
     {
