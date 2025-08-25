@@ -8,8 +8,6 @@ namespace MagmaWorks.Uncertainties.Models
         public double LowerBound { get; }
         public double UpperBound { get; }
 
-        public double CentralValue => (LowerBound + UpperBound) / 2;
-
         public IntervalUncertaintyModel(double lower, double upper)
         {
             if (upper < lower)
