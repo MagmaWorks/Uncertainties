@@ -1,7 +1,6 @@
 ﻿#if NET8_0_OR_GREATER
 using System;
 using MagmaWorks.Uncertainties.Models;
-using UnitsNet;
 
 namespace MagmaWorks.Uncertainties
 {
