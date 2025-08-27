@@ -6,27 +6,37 @@
   </PropertyGroup>
 
   <PropertyGroup>
-	<TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
-	  <LangVersion>10.0</LangVersion>
+    <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
+    <LangVersion>11.0</LangVersion>
     <Platforms>AnyCPU</Platforms>
-    <RootNamespace>MagmaWorks.Uncertainties</RootNamespace>
+    <RootNamespace>MagmaWorks.Uncertainties.Quantities</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>MagmaWorks Uncertainties Interfaces</Title>
+    <Title>MagmaWorks Quantity Uncertainties</Title>
     <Company>Whitby Wood</Company>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/MagmaWorks/Taxonomy/</RepositoryUrl>
+    <RepositoryUrl>https://github.com/MagmaWorks/Template-Repo/</RepositoryUrl>
     <PackageIcon>MagmaWorks.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MagmaWorks.Taxonomy.ISerialization" Version="0.1.10" />
     <PackageReference Include="MinVer" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="UnitsNet" Version="5.75.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IUncertainties\MagmaWorks.IUncertainties.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>UncertaintiesTests</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +49,10 @@
       <PackagePath>\</PackagePath>
     </None>
     <None Include="..\Licenses\Newtonsoft">
+      <Pack>True</Pack>
+      <PackagePath>\Licenses\</PackagePath>
+    </None>
+    <None Include="..\Licenses\UnitsNet">
       <Pack>True</Pack>
       <PackagePath>\Licenses\</PackagePath>
     </None>
