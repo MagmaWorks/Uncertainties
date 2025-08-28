@@ -1,5 +1,5 @@
-﻿#if NET8_0_OR_GREATER
-using System;
+﻿using System;
+using MagmaWorks.Uncertainties.Utility;
 using Model = MagmaWorks.Uncertainties.UncertaintyModel;
 
 namespace MagmaWorks.Uncertainties
@@ -34,6 +34,78 @@ namespace MagmaWorks.Uncertainties
                     UncertaintyModel = new NormalDistributionUncertainty(centralValue, 0, 0);
                     break;
             }
+        }
+
+        public static Uncertainty operator +(Uncertainty left, Uncertainty right)
+            => left.Add(right);
+
+        public static Uncertainty operator -(Uncertainty left, Uncertainty right)
+            => left.Subtract(right);
+
+        public static Uncertainty operator *(Uncertainty left, double right)
+            => left.Multiply(right);
+
+        public static Uncertainty operator /(Uncertainty left, double right)
+        {
+            if (right == 0)
+            {
+                throw new DivideByZeroException();
+            }
+
+            return left.Divide(right);
+        }
+
+        public static implicit operator Uncertainty(IntervalUncertainty uncertainty)
+            => new Uncertainty(uncertainty);
+
+        public static implicit operator Uncertainty(RelativeUncertainty uncertainty)
+            => new Uncertainty(uncertainty);
+
+        public static implicit operator Uncertainty(AbsoluteUncertainty uncertainty)
+            => new Uncertainty(uncertainty);
+
+        public static implicit operator Uncertainty(NormalDistributionUncertainty uncertainty)
+            => new Uncertainty(uncertainty);
+
+        public static explicit operator IntervalUncertainty(Uncertainty uncertainty)
+        {
+            if (uncertainty != null && uncertainty.UncertaintyModel is IntervalUncertainty interv)
+            {
+                return interv;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
+        }
+
+        public static explicit operator RelativeUncertainty(Uncertainty uncertainty)
+        {
+            if (uncertainty != null && uncertainty.UncertaintyModel is RelativeUncertainty rel)
+            {
+                return rel;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
+        }
+
+        public static explicit operator AbsoluteUncertainty(Uncertainty uncertainty)
+        {
+            if (uncertainty != null && uncertainty.UncertaintyModel is AbsoluteUncertainty abs)
+            {
+                return abs;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
+        }
+
+        public static explicit operator NormalDistributionUncertainty(Uncertainty uncertainty)
+        {
+            if (uncertainty != null &&
+                uncertainty.UncertaintyModel is NormalDistributionUncertainty norm)
+            {
+                return norm;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
         }
 
         public static Uncertainty FromAbsoluteUncertainty(
@@ -71,4 +143,3 @@ namespace MagmaWorks.Uncertainties
             => UncertaintyModel.PropagateUnary(operation);
     }
 }
-#endif

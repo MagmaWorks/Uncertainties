@@ -72,6 +72,73 @@ namespace MagmaWorks.Uncertainties
                 centralValue, standardDeviation, coverageFactor);
         }
 
+
+        internal UncertaintyQuantity(IUncertainty<T> model)
+        {
+            UncertaintyModel = model;
+        }
+
+        public static implicit operator UncertaintyQuantity<T>(
+            IntervalUncertaintyQuantity<T> uncertainty) => new UncertaintyQuantity<T>(uncertainty);
+
+        public static implicit operator UncertaintyQuantity<T>(
+            RelativeUncertaintyQuantity<T> uncertainty) => new UncertaintyQuantity<T>(uncertainty);
+
+        public static implicit operator UncertaintyQuantity<T>(
+            AbsoluteUncertaintyQuantity<T> uncertainty) => new UncertaintyQuantity<T>(uncertainty);
+
+        public static implicit operator UncertaintyQuantity<T>(
+            NormalDistributionUncertaintyQuantity<T> uncertainty)
+            => new UncertaintyQuantity<T>(uncertainty);
+
+        public static explicit operator IntervalUncertaintyQuantity<T>(
+            UncertaintyQuantity<T> uncertainty)
+        {
+            if (uncertainty != null &&
+                uncertainty.UncertaintyModel is IntervalUncertaintyQuantity<T> interv)
+            {
+                return interv;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
+        }
+
+        public static explicit operator RelativeUncertaintyQuantity<T>(
+            UncertaintyQuantity<T> uncertainty)
+        {
+            if (uncertainty != null &&
+                uncertainty.UncertaintyModel is RelativeUncertaintyQuantity<T> rel)
+            {
+                return rel;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
+        }
+
+        public static explicit operator AbsoluteUncertaintyQuantity<T>(
+            UncertaintyQuantity<T> uncertainty)
+        {
+            if (uncertainty != null &&
+                uncertainty.UncertaintyModel is AbsoluteUncertaintyQuantity<T> abs)
+            {
+                return abs;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
+        }
+
+        public static explicit operator NormalDistributionUncertaintyQuantity<T>(
+            UncertaintyQuantity<T> uncertainty)
+        {
+            if (uncertainty != null &&
+                uncertainty.UncertaintyModel is NormalDistributionUncertaintyQuantity<T> norm)
+            {
+                return norm;
+            }
+
+            throw new Exception($"Invalid uncertainty model");
+        }
+
         public static UncertaintyQuantity<T> FromAbsoluteUncertainty(
             T centralValue, T absoluteUncertainty)
         {
