@@ -55,8 +55,7 @@
             var central = Length.FromMeters(50);
             var deviation = Length.FromMeters(3);
 
-            var uq = UncertaintyQuantity<Length>.FromNormalDistributionUncertainty(
-                central, deviation, coverageFactor: 2);
+            var uq = UncertaintyQuantity<Length>.FromNormalDistributionUncertainty(central, deviation, coverageFactor: 2);
 
             Assert.Equal(50, uq.CentralValue.Meters, 6);
             Assert.IsType<NormalDistributionUncertaintyQuantity<Length>>(uq.UncertaintyModel);
