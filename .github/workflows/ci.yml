@@ -13,7 +13,7 @@ on:
 
 jobs:
   dispatch:
-    uses: MagmaWorks/Actions/.github/workflows/dispatch-dotnet.yml@main
+    uses: MagmaWorks/Actions/.github/workflows/dotnet-repo.yml@main
     permissions:
       contents: write
       checks: write
