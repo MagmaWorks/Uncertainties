@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="UnitsNet" Version="5.75.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Uncertainties\MagmaWorks.Uncertainties.csproj" />
     <ProjectReference Include="..\IUncertainties\MagmaWorks.IUncertainties.csproj" />
+    <ProjectReference Include="..\UncertaintQuantities\MagmaWorks.Uncertainties.Quantities.csproj" />
   </ItemGroup>
 
 </Project>

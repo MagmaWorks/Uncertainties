@@ -1,6 +1,4 @@
-﻿using MagmaWorks.Uncertainties.Models;
-
-namespace MagmaWorks.Uncertainties.Tests
+﻿namespace MagmaWorks.Uncertainties.Tests
 {
     public class UncertaintyQuantityConstructorTests
     {
@@ -13,10 +11,10 @@ namespace MagmaWorks.Uncertainties.Tests
             var uq = new UncertaintyQuantity<Length>(central, uncertainty);
 
             Assert.Equal(100, uq.CentralValue.Meters, 6);
-            Assert.IsType<AbsoluteUncertaintyModel>(uq.Model);
+            Assert.IsType<AbsoluteUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var absModel = (AbsoluteUncertaintyModel)uq.Model;
-            Assert.InRange(absModel.AbsoluteUncertainty, 0.49, 0.51);
+            var absModel = (AbsoluteUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.InRange(absModel.AbsoluteUncertaintyValue.Meters, 0.49, 0.51);
         }
 
         [Fact]
@@ -28,40 +26,43 @@ namespace MagmaWorks.Uncertainties.Tests
             var uq = new UncertaintyQuantity<Length>(central, rel);
 
             Assert.Equal(100, uq.CentralValue.Meters, 6);
-            Assert.IsType<RelativeUncertaintyModel>(uq.Model);
+            Assert.IsType<RelativeUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var relModel = (RelativeUncertaintyModel)uq.Model;
-            Assert.InRange(relModel.RelativeUncertainty, 0.099, 0.101);
+            var relModel = (RelativeUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.InRange(relModel.RelativeUncertaintyValue, 0.099, 0.101);
         }
 
         [Fact]
         public void IntervalUncertaintyConstructor_AssignsBounds()
         {
             var central = Length.FromMeters(100);
+            var lower = Length.FromMeters(80);
+            var upper = Length.FromMeters(120);
 
-            var uq = new UncertaintyQuantity<Length>(central, 80, 120);
+            var uq = new UncertaintyQuantity<Length>(central, lower, upper);
 
             Assert.Equal(100, uq.CentralValue.Meters, 6);
-            Assert.IsType<IntervalUncertaintyModel>(uq.Model);
+            Assert.IsType<IntervalUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var intervalModel = (IntervalUncertaintyModel)uq.Model;
-            Assert.Equal(80, intervalModel.LowerBound);
-            Assert.Equal(120, intervalModel.UpperBound);
+            var intervalModel = (IntervalUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.Equal(80, intervalModel.LowerBound.Meters);
+            Assert.Equal(120, intervalModel.UpperBound.Meters);
         }
 
         [Fact]
         public void NormalDistributionUncertaintyConstructor_AssignsValues()
         {
             var central = Length.FromMeters(100);
+            var deviation = Length.FromMeters(5);
 
-            var uq = new UncertaintyQuantity<Length>(central, 5);
+            var uq = new UncertaintyQuantity<Length>(central, deviation, 3.0);
 
             Assert.Equal(100, uq.CentralValue.Meters, 6);
-            Assert.IsType<NormalDistributionUncertaintyModel>(uq.Model);
+            Assert.IsType<NormalDistributionUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var normalModel = (NormalDistributionUncertaintyModel)uq.Model;
-            Assert.Equal(100, normalModel.Mean, 6);
-            Assert.Equal(5, normalModel.StandardDeviation, 6);
+            var normalModel = (NormalDistributionUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.Equal(100, normalModel.CentralValue.Meters, 6);
+            Assert.Equal(5, normalModel.StandardDeviation.Meters, 6);
             Assert.Equal(3, normalModel.CoverageFactor); // default coverage factor
         }
     }
