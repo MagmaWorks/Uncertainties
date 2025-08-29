@@ -1,13 +1,6 @@
 name: CI using shared actions
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, edited, synchronize]
-  release:
-    types: [published]
   issue_comment:
     types: [created, edited]
 
