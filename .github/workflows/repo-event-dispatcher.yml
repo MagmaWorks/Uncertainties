@@ -19,3 +19,7 @@ jobs:
       ref: ${{ github.ref }}
       head_ref: ${{ github.head_ref || '' }}
       comment_body: ${{ github.event.comment.body || '' }}
+    permissions:
+      contents: write
+      checks: write
+      pull-requests: write
