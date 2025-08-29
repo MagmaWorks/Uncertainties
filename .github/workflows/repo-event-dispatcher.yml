@@ -14,10 +14,6 @@ on:
 jobs:
   dispatch:
     uses: MagmaWorks/Actions/.github/workflows/central-dispatch.yml@main
-    with:
-      codecov: true
-      lint: true
-      dotnet: '8.0.x'
     permissions:
       contents: write
       checks: write
