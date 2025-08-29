@@ -1,0 +1,22 @@
+name: CI using shared actions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, edited, synchronize]
+  release:
+    types: [published]
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  ci:
+    uses: MagmaWorks/Actions/.github/workflows/dotnet-repo.yml@main
+    permissions:
+      actions: write
+      attestations: write
+      checks: write
+      contents: write
+      pull-requests: write

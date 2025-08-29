@@ -1,7 +1,7 @@
 ﻿using System;
 using UnitsNet;
 
-namespace MagmaWorks.Uncertainties.Utility
+namespace MagmaWorks.Uncertainties.Quantities.Utility
 {
     public static class UncertaintyQuantityOperators
     {
@@ -13,12 +13,8 @@ namespace MagmaWorks.Uncertainties.Utility
                 b.CentralValue.QuantityInfo.BaseUnitInfo.QuantityName)
                 throw new InvalidOperationException("Incompatible units.");
 
-            var resultValue = Quantity.From(
-                (double)a.CentralValue.Value + b.CentralValue.As(a.CentralValue.Unit),
-                a.CentralValue.Unit);
-
-            var resultModel = a.Model.PropagateBinary(b.Model, (x, y) => x + y);
-            return new UncertaintyQuantity<TQuantity>((TQuantity)resultValue, resultModel);
+            return new UncertaintyQuantity<TQuantity>(
+                a.PropagateBinary(b.UncertaintyModel, (x, y) => x.Add(y)));
         }
 
         public static UncertaintyQuantity<TQuantity> Subtract<TQuantity>(
@@ -29,32 +25,22 @@ namespace MagmaWorks.Uncertainties.Utility
                 b.CentralValue.QuantityInfo.BaseUnitInfo.QuantityName)
                 throw new InvalidOperationException("Incompatible units.");
 
-            var resultValue = Quantity.From(
-                (double)a.CentralValue.Value - b.CentralValue.As(a.CentralValue.Unit),
-                a.CentralValue.Unit);
-
-            var resultModel = a.Model.PropagateBinary(b.Model, (x, y) => x - y);
-            return new UncertaintyQuantity<TQuantity>((TQuantity)resultValue, resultModel);
+            return new UncertaintyQuantity<TQuantity>(
+                a.PropagateBinary(b.UncertaintyModel, (x, y) => x.Subtract(y)));
         }
 
         public static UncertaintyQuantity<TQuantity> Multiply<TQuantity>(
             this UncertaintyQuantity<TQuantity> a, double factor)
             where TQuantity : IQuantity
         {
-            var newQuantity = Quantity.From((double)a.CentralValue.Value * factor, a.CentralValue.Unit);
-            var newModel = a.Model.PropagateUnary(x => x * factor);
-
-            return new UncertaintyQuantity<TQuantity>((TQuantity)newQuantity, newModel);
+            return new UncertaintyQuantity<TQuantity>(a.PropagateUnary(x => x * factor));
         }
 
         public static UncertaintyQuantity<TQuantity> Divide<TQuantity>(
             this UncertaintyQuantity<TQuantity> a, double divisor)
             where TQuantity : IQuantity
         {
-            var newQuantity = Quantity.From((double)a.CentralValue.Value / divisor, a.CentralValue.Unit);
-            var newModel = a.Model.PropagateUnary(x => x / divisor);
-
-            return new UncertaintyQuantity<TQuantity>((TQuantity)newQuantity, newModel);
+            return new UncertaintyQuantity<TQuantity>(a.PropagateUnary(x => x / divisor));
         }
     }
 }

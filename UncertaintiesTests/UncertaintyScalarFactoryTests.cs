@@ -1,6 +1,4 @@
-﻿using MagmaWorks.Uncertainties.Models;
-
-namespace MagmaWorks.Uncertainties.Tests
+﻿namespace MagmaWorks.Uncertainties.Tests
 {
     public class UncertaintyScalarFactoryTests
     {
@@ -10,13 +8,13 @@ namespace MagmaWorks.Uncertainties.Tests
             double central = 200.0;
             double absUnc = 10.0;
 
-            var us = UncertaintyScalar.FromAbsoluteUncertainty(central, absUnc);
+            var us = UncertaintyScalar<double>.FromAbsoluteUncertainty(central, absUnc);
 
             Assert.Equal(200.0, us.CentralValue);
-            Assert.IsType<AbsoluteUncertaintyModel>(us.Model);
+            Assert.IsType<AbsoluteUncertaintyScalar<double>>(us.UncertaintyModel);
 
-            var model = (AbsoluteUncertaintyModel)us.Model;
-            Assert.Equal(10.0, model.AbsoluteUncertainty);
+            var model = (AbsoluteUncertaintyScalar<double>)us.UncertaintyModel;
+            Assert.Equal(10.0, model.AbsoluteUncertaintyValue);
         }
 
         [Fact]
@@ -25,13 +23,13 @@ namespace MagmaWorks.Uncertainties.Tests
             double central = 200.0;
             double relUnc = 0.1;
 
-            var us = UncertaintyScalar.FromRelativeUncertainty(central, relUnc);
+            var us = UncertaintyScalar<double>.FromRelativeUncertainty(central, relUnc);
 
             Assert.Equal(200.0, us.CentralValue);
-            Assert.IsType<RelativeUncertaintyModel>(us.Model);
+            Assert.IsType<RelativeUncertaintyScalar<double>>(us.UncertaintyModel);
 
-            var model = (RelativeUncertaintyModel)us.Model;
-            Assert.InRange(model.RelativeUncertainty, 0.099, 0.101);
+            var model = (RelativeUncertaintyScalar<double>)us.UncertaintyModel;
+            Assert.InRange(model.RelativeUncertaintyValue, 0.099, 0.101);
         }
 
         [Fact]
@@ -39,12 +37,12 @@ namespace MagmaWorks.Uncertainties.Tests
         {
             double central = 200.0;
 
-            var us = UncertaintyScalar.FromIntervalUncertainty(central, 180, 220);
+            var us = UncertaintyScalar<double>.FromIntervalUncertainty(central, 180, 220);
 
             Assert.Equal(200.0, us.CentralValue);
-            Assert.IsType<IntervalUncertaintyModel>(us.Model);
+            Assert.IsType<IntervalUncertaintyScalar<double>>(us.UncertaintyModel);
 
-            var model = (IntervalUncertaintyModel)us.Model;
+            var model = (IntervalUncertaintyScalar<double>)us.UncertaintyModel;
             Assert.Equal(180, model.LowerBound);
             Assert.Equal(220, model.UpperBound);
         }
@@ -54,13 +52,14 @@ namespace MagmaWorks.Uncertainties.Tests
         {
             double central = 200.0;
 
-            var us = UncertaintyScalar.FromNormalDistributionUncertainty(central, 15, coverageFactor: 1.96);
+            var us = UncertaintyScalar<double>.
+                FromNormalDistributionUncertainty(central, 15, coverageFactor: 1.96);
 
             Assert.Equal(200.0, us.CentralValue);
-            Assert.IsType<NormalDistributionUncertaintyModel>(us.Model);
+            Assert.IsType<NormalDistributionUncertaintyScalar<double>>(us.UncertaintyModel);
 
-            var model = (NormalDistributionUncertaintyModel)us.Model;
-            Assert.Equal(200.0, model.Mean, 6);
+            var model = (NormalDistributionUncertaintyScalar<double>)us.UncertaintyModel;
+            Assert.Equal(200.0, model.CentralValue, 6);
             Assert.Equal(15.0, model.StandardDeviation, 6);
             Assert.Equal(1.96, model.CoverageFactor);
         }

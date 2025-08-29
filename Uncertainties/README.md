@@ -1,2 +1,2 @@
-# Template package
-Description of the concrete implementation package to be included and shown on NuGet
+# Uncertainties
+Concrete implementation of IUncertainties for `double` and `decimal` primitives.

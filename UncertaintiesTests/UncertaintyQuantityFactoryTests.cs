@@ -1,6 +1,4 @@
-﻿using MagmaWorks.Uncertainties.Models;
-
-namespace MagmaWorks.Uncertainties.Tests
+﻿namespace MagmaWorks.Uncertainties.Tests
 {
     public class UncertaintyQuantityFactoryTests
     {
@@ -13,10 +11,10 @@ namespace MagmaWorks.Uncertainties.Tests
             var uq = UncertaintyQuantity<Length>.FromAbsoluteUncertainty(central, absUnc);
 
             Assert.Equal(50, uq.CentralValue.Meters, 6);
-            Assert.IsType<AbsoluteUncertaintyModel>(uq.Model);
+            Assert.IsType<AbsoluteUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var model = (AbsoluteUncertaintyModel)uq.Model;
-            Assert.InRange(model.AbsoluteUncertainty, 0.099, 0.101);
+            var absModel = (AbsoluteUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.InRange(absModel.AbsoluteUncertaintyValue.Meters, 0.099, 0.101);
         }
 
         [Fact]
@@ -28,41 +26,45 @@ namespace MagmaWorks.Uncertainties.Tests
             var uq = UncertaintyQuantity<Length>.FromRelativeUncertainty(central, relUnc);
 
             Assert.Equal(50, uq.CentralValue.Meters, 6);
-            Assert.IsType<RelativeUncertaintyModel>(uq.Model);
+            Assert.IsType<RelativeUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var model = (RelativeUncertaintyModel)uq.Model;
-            Assert.InRange(model.RelativeUncertainty, 0.049, 0.051);
+            var relModel = (RelativeUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.InRange(relModel.RelativeUncertaintyValue, 0.049, 0.051);
         }
 
         [Fact]
         public void FromIntervalUncertainty_CreatesCorrectModel()
         {
             var central = Length.FromMeters(50);
+            var lower = Length.FromMeters(40);
+            var upper = Length.FromMeters(60);
 
-            var uq = UncertaintyQuantity<Length>.FromIntervalUncertainty(central, 40, 60);
+            var uq = UncertaintyQuantity<Length>.FromIntervalUncertainty(central, lower, upper);
 
             Assert.Equal(50, uq.CentralValue.Meters, 6);
-            Assert.IsType<IntervalUncertaintyModel>(uq.Model);
+            Assert.IsType<IntervalUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var model = (IntervalUncertaintyModel)uq.Model;
-            Assert.Equal(40, model.LowerBound);
-            Assert.Equal(60, model.UpperBound);
+            var intervalModel = (IntervalUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.Equal(40, intervalModel.LowerBound.Meters);
+            Assert.Equal(60, intervalModel.UpperBound.Meters);
         }
 
         [Fact]
         public void FromNormalDistributionUncertainty_CreatesCorrectModel()
         {
             var central = Length.FromMeters(50);
+            var deviation = Length.FromMeters(3);
 
-            var uq = UncertaintyQuantity<Length>.FromNormalDistributionUncertainty(central, 3, coverageFactor: 2);
+            var uq = UncertaintyQuantity<Length>.FromNormalDistributionUncertainty(
+                central, deviation, coverageFactor: 2);
 
             Assert.Equal(50, uq.CentralValue.Meters, 6);
-            Assert.IsType<NormalDistributionUncertaintyModel>(uq.Model);
+            Assert.IsType<NormalDistributionUncertaintyQuantity<Length>>(uq.UncertaintyModel);
 
-            var model = (NormalDistributionUncertaintyModel)uq.Model;
-            Assert.Equal(50, model.Mean, 6);
-            Assert.Equal(3, model.StandardDeviation, 6);
-            Assert.Equal(2, model.CoverageFactor);
+            var normalModel = (NormalDistributionUncertaintyQuantity<Length>)uq.UncertaintyModel;
+            Assert.Equal(50, normalModel.CentralValue.Meters, 6);
+            Assert.Equal(3, normalModel.StandardDeviation.Meters, 6);
+            Assert.Equal(2, normalModel.CoverageFactor);
         }
     }
 }

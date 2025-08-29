@@ -51,10 +51,6 @@
       <Pack>True</Pack>
       <PackagePath>\Licenses\</PackagePath>
     </None>
-    <None Include="..\Licenses\UnitsNet">
-      <Pack>True</Pack>
-      <PackagePath>\Licenses\</PackagePath>
-    </None>
     <None Include="..\MagmaWorks.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
