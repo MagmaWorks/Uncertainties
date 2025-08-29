@@ -13,7 +13,8 @@ namespace MagmaWorks.Uncertainties.Quantities.Utility
                 b.CentralValue.QuantityInfo.BaseUnitInfo.QuantityName)
                 throw new InvalidOperationException("Incompatible units.");
 
-            return (UncertaintyQuantity<TQuantity>)a.PropagateBinary(b, (x, y) => x.Add(y));
+            return new UncertaintyQuantity<TQuantity>(
+                a.PropagateBinary(b.UncertaintyModel, (x, y) => x.Add(y)));
         }
 
         public static UncertaintyQuantity<TQuantity> Subtract<TQuantity>(
@@ -24,21 +25,22 @@ namespace MagmaWorks.Uncertainties.Quantities.Utility
                 b.CentralValue.QuantityInfo.BaseUnitInfo.QuantityName)
                 throw new InvalidOperationException("Incompatible units.");
 
-            return (UncertaintyQuantity<TQuantity>)a.PropagateBinary(b, (x, y) => x.Subtract(y));
+            return new UncertaintyQuantity<TQuantity>(
+                a.PropagateBinary(b.UncertaintyModel, (x, y) => x.Subtract(y)));
         }
 
         public static UncertaintyQuantity<TQuantity> Multiply<TQuantity>(
             this UncertaintyQuantity<TQuantity> a, double factor)
             where TQuantity : IQuantity
         {
-            return (UncertaintyQuantity<TQuantity>)a.PropagateUnary(x => x * factor);
+            return new UncertaintyQuantity<TQuantity>(a.PropagateUnary(x => x * factor));
         }
 
         public static UncertaintyQuantity<TQuantity> Divide<TQuantity>(
             this UncertaintyQuantity<TQuantity> a, double divisor)
             where TQuantity : IQuantity
         {
-            return (UncertaintyQuantity<TQuantity>)a.PropagateUnary(x => x / divisor);
+            return new UncertaintyQuantity<TQuantity>(a.PropagateUnary(x => x / divisor));
         }
     }
 }
