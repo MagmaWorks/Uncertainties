@@ -12,7 +12,7 @@ on:
     types: [created, edited]
 
 jobs:
-  dispatch:
+  ci:
     uses: MagmaWorks/Actions/.github/workflows/dotnet-repo.yml@main
     permissions:
       actions: write
