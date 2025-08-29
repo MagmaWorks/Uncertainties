@@ -19,6 +19,3 @@ jobs:
       ref: ${{ github.ref }}
       head_ref: ${{ github.head_ref || '' }}
       comment_body: ${{ github.event.comment.body || '' }}
-    secrets:
-      ACTIONS_PAT: ${{ secrets.ACTIONS_PAT }}
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
