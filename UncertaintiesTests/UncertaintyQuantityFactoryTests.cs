@@ -53,7 +53,7 @@
         public void FromNormalDistributionUncertainty_CreatesCorrectModel()
         {
             var central = Length.FromMeters(50);
-            var deviation = Length.FromMeters(3 );
+            var deviation = Length.FromMeters(3);
 
             var uq = UncertaintyQuantity<Length>.FromNormalDistributionUncertainty(
                 central, deviation, coverageFactor: 2);
