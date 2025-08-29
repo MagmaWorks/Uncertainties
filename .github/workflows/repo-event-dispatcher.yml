@@ -14,11 +14,6 @@ on:
 jobs:
   dispatch:
     uses: MagmaWorks/Actions/.github/workflows/central-dispatch.yml@main
-    with:
-      event_name: ${{ github.event_name }}
-      ref: ${{ github.ref }}
-      head_ref: ${{ github.head_ref || '' }}
-      comment_body: ${{ github.event.comment.body || '' }}
     permissions:
       contents: write
       checks: write
