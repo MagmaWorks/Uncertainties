@@ -18,6 +18,11 @@ namespace MagmaWorks.Uncertainties.Scalar
         public NormalDistributionUncertaintyScalar(
             T mean, T standardDeviation, double coverageFactor = 3.0)
         {
+            if (standardDeviation < T.Zero)
+            {
+                throw new ArgumentException("Standard deviation must be a positive number");
+            }
+
             CentralValue = mean;
             StandardDeviation = standardDeviation;
             CoverageFactor = coverageFactor;

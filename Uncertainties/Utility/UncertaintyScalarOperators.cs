@@ -1,5 +1,6 @@
 ﻿#if NET8_0_OR_GREATER
 using System.Numerics;
+using MagmaWorks.Uncertainties.Scalar;
 
 namespace MagmaWorks.Uncertainties.Utility
 {

@@ -15,6 +15,11 @@ namespace MagmaWorks.Uncertainties.Decimal
         public NormalDistributionUncertaintyDecimal(
             decimal mean, decimal standardDeviation, double coverageFactor = 3.0)
         {
+            if (standardDeviation < 0)
+            {
+                throw new ArgumentException("Standard deviation must be a positive number");
+            }
+
             CentralValue = mean;
             StandardDeviation = standardDeviation;
             CoverageFactor = coverageFactor;

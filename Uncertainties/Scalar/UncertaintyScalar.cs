@@ -1,9 +1,8 @@
 ﻿#if NET8_0_OR_GREATER
 using System;
 using System.Numerics;
-using MagmaWorks.Uncertainties.Scalar;
 
-namespace MagmaWorks.Uncertainties
+namespace MagmaWorks.Uncertainties.Scalar
 {
     public class UncertaintyScalar<T> : IUncertainty<T> where T : INumber<T>
     {
