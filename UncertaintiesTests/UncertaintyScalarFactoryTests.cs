@@ -53,7 +53,7 @@
             double central = 200.0;
 
             var us = UncertaintyScalar<double>.
-                FromNormalDistributionUncertainty(central, 15, coverageFactor: 1.96);  
+                FromNormalDistributionUncertainty(central, 15, coverageFactor: 1.96);
 
             Assert.Equal(200.0, us.CentralValue);
             Assert.IsType<NormalDistributionUncertaintyScalar<double>>(us.UncertaintyModel);

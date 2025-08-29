@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace MagmaWorks.Uncertainties.Decimal
 {
-    public class IntervalUncertaintyDecimal: IIntervalUncertainty<decimal>
+    public class IntervalUncertaintyDecimal : IIntervalUncertainty<decimal>
     {
         public decimal CentralValue { get; set; }
         public decimal LowerBound { get; set; }
