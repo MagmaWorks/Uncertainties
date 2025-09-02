@@ -20,3 +20,5 @@ jobs:
       checks: write
       contents: write
       pull-requests: write
+    secrets:
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
