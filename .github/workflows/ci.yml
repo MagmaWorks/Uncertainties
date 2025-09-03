@@ -16,7 +16,7 @@ jobs:
     uses: MagmaWorks/Actions/.github/workflows/ci-dotnet.yml@main
     permissions:
       actions: write
-      attestations: write
+      issues: write
       checks: write
       contents: write
       pull-requests: write
