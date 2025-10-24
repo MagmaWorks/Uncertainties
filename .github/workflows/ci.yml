@@ -12,3 +12,4 @@ on:
 jobs:
   ci:
     uses: MagmaWorks/Actions/.github/workflows/ci-dotnet.yml@main
+    secrets: inherit
