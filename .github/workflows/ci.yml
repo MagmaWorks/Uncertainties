@@ -14,10 +14,3 @@ on:
 jobs:
   ci:
     uses: MagmaWorks/Actions/.github/workflows/ci-dotnet.yml@main
-    permissions:
-      actions: write
-      issues: write
-      checks: write
-      contents: write
-      pull-requests: write
-    secrets: inherit
