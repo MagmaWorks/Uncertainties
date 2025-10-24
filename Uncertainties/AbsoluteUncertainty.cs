@@ -6,7 +6,7 @@ namespace MagmaWorks.Uncertainties
     public class AbsoluteUncertainty : IAbsoluteUncertainty<double>
     {
         public double AbsoluteUncertaintyValue { get; set; }
-        public double CentralValue {   get; set; }
+        public double CentralValue { get; set; }
         public double LowerBound => CentralValue - AbsoluteUncertaintyValue;
         public double UpperBound => CentralValue + AbsoluteUncertaintyValue;
 
