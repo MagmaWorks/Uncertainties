@@ -2,6 +2,6 @@
 {
     public interface IAbsoluteUncertainty<T> : IUncertainty<T>
     {
-        public T AbsoluteUncertaintyValue {    get; }
+        public T AbsoluteUncertaintyValue { get; }
     }
 }
