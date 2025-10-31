@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MagmaWorks.Taxonomy.ISerialization" Version="0.1.10" />
+    <PackageReference Include="MagmaWorks.Taxonomy.ISerialization" Version="0.1.11" />
     <PackageReference Include="MinVer" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
