@@ -1,8 +1,8 @@
 ﻿using System;
-using MagmaWorks.Uncertainties.Quantities;
 using UnitsNet;
+using VividOrange.Uncertainties.Quantities;
 
-namespace MagmaWorks.Uncertainties
+namespace VividOrange.Uncertainties
 {
     public class UncertaintyQuantity<T>
         : IUncertainty<T> where T : IQuantity

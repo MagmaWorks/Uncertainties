@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MagmaWorks.Uncertainties
+namespace VividOrange.Uncertainties
 {
     public class NormalDistributionUncertainty : INormalDistributionUncertainty<double>
     {

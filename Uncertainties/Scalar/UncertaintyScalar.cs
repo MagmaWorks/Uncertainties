@@ -2,7 +2,7 @@
 using System;
 using System.Numerics;
 
-namespace MagmaWorks.Uncertainties.Scalar
+namespace VividOrange.Uncertainties.Scalar
 {
     public class UncertaintyScalar<T> : IUncertainty<T> where T : INumber<T>
     {

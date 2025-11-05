@@ -1,4 +1,4 @@
-﻿namespace MagmaWorks.Uncertainties
+﻿namespace VividOrange.Uncertainties
 {
     public enum UncertaintyModel
     {

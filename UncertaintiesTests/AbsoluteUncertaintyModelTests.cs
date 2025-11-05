@@ -1,6 +1,6 @@
-﻿using MagmaWorks.Uncertainties.Quantities.Utility;
+﻿using VividOrange.Uncertainties.Quantities.Utility;
 
-namespace MagmaWorks.Uncertainties.Tests
+namespace VividOrange.Uncertainties.Tests
 {
     public class AbsoluteUncertaintyModelTests
     {

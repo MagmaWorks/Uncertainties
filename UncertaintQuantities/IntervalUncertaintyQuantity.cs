@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using MagmaWorks.Uncertainties.Quantities.Utility;
 using UnitsNet;
+using VividOrange.Uncertainties.Quantities.Utility;
 
-namespace MagmaWorks.Uncertainties.Quantities
+namespace VividOrange.Uncertainties.Quantities
 {
     public class IntervalUncertaintyQuantity<TQuantity>
         : IIntervalUncertainty<TQuantity> where TQuantity : IQuantity

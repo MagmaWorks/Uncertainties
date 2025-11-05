@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace MagmaWorks.Uncertainties
+namespace VividOrange.Uncertainties
 {
     public class RelativeUncertainty : IRelativeUncertainty<double>
     {

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 
-namespace MagmaWorks.Uncertainties.Scalar
+namespace VividOrange.Uncertainties.Scalar
 {
     public class IntervalUncertaintyScalar<T> : IIntervalUncertainty<T> where T : INumber<T>
     {
