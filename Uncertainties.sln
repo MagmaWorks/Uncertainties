@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagmaWorks.IUncertainties", "IUncertainties\MagmaWorks.IUncertainties.csproj", "{995BF6DC-3E3E-4165-8EF2-83360537FF1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VividOrange.IUncertainties", "IUncertainties\VividOrange.IUncertainties.csproj", "{995BF6DC-3E3E-4165-8EF2-83360537FF1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagmaWorks.Uncertainties", "Uncertainties\MagmaWorks.Uncertainties.csproj", "{53294695-E114-4DA9-9F1A-F8E2C289DB60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VividOrange.Uncertainties", "Uncertainties\VividOrange.Uncertainties.csproj", "{53294695-E114-4DA9-9F1A-F8E2C289DB60}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UncertaintiesTests", "UncertaintiesTests\UncertaintiesTests.csproj", "{86D261B4-B15C-4F44-B655-CE127B7CC3C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagmaWorks.Uncertainties.Quantities", "UncertaintQuantities\MagmaWorks.Uncertainties.Quantities.csproj", "{FA02F742-B237-413F-96FE-A8A547D2454F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VividOrange.Uncertainties.Quantities", "UncertaintQuantities\VividOrange.Uncertainties.Quantities.csproj", "{FA02F742-B237-413F-96FE-A8A547D2454F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

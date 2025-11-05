@@ -1,4 +1,4 @@
-﻿namespace MagmaWorks.Uncertainties.Utility
+﻿namespace VividOrange.Uncertainties.Utility
 {
     public static class UncertaintyOperators
     {

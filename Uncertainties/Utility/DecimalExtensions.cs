@@ -1,6 +1,6 @@
-﻿using MagmaWorks.Uncertainties.Decimal;
+﻿using VividOrange.Uncertainties.Decimal;
 
-namespace MagmaWorks.Uncertainties.Utility;
+namespace VividOrange.Uncertainties.Utility;
 
 public static class DecimalExtensions
 {

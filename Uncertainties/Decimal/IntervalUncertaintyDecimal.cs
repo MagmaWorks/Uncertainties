@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace MagmaWorks.Uncertainties.Decimal
+namespace VividOrange.Uncertainties.Decimal
 {
     public class IntervalUncertaintyDecimal : IIntervalUncertainty<decimal>
     {

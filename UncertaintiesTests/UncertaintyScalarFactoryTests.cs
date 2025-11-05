@@ -1,4 +1,4 @@
-﻿namespace MagmaWorks.Uncertainties.Tests
+﻿namespace VividOrange.Uncertainties.Tests
 {
     public class UncertaintyScalarFactoryTests
     {

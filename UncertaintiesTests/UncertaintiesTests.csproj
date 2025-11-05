@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Uncertainties\MagmaWorks.Uncertainties.csproj" />
-    <ProjectReference Include="..\IUncertainties\MagmaWorks.IUncertainties.csproj" />
-    <ProjectReference Include="..\UncertaintQuantities\MagmaWorks.Uncertainties.Quantities.csproj" />
+    <ProjectReference Include="..\Uncertainties\VividOrange.Uncertainties.csproj" />
+    <ProjectReference Include="..\IUncertainties\VividOrange.IUncertainties.csproj" />
+    <ProjectReference Include="..\UncertaintQuantities\VividOrange.Uncertainties.Quantities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MagmaWorks.Uncertainties.Decimal
+namespace VividOrange.Uncertainties.Decimal
 {
     public class NormalDistributionUncertaintyDecimal : INormalDistributionUncertainty<decimal>
     {

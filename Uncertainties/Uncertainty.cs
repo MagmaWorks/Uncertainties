@@ -1,8 +1,8 @@
 ﻿using System;
-using MagmaWorks.Uncertainties.Utility;
-using Model = MagmaWorks.Uncertainties.UncertaintyModel;
+using VividOrange.Uncertainties.Utility;
+using Model = VividOrange.Uncertainties.UncertaintyModel;
 
-namespace MagmaWorks.Uncertainties
+namespace VividOrange.Uncertainties
 {
     public class Uncertainty : IUncertainty<double>
     {

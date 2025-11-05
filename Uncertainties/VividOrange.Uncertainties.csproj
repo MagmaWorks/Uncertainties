@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <MinVerMinimumMajorMinor>0.0</MinVerMinimumMajorMinor>
+    <MinVerMinimumMajorMinor>0.2</MinVerMinimumMajorMinor>
     <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
   </PropertyGroup>
 
@@ -9,16 +9,17 @@
     <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
 	  <LangVersion>11.0</LangVersion>
     <Platforms>AnyCPU</Platforms>
-    <RootNamespace>MagmaWorks.Uncertainties</RootNamespace>
+    <RootNamespace>VividOrange.Uncertainties</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>MagmaWorks Uncertainties</Title>
-    <Company>Whitby Wood</Company>
+    <Title>Vivid Orange Uncertainties</Title>
+    <Description>Calculations with number with uncertainties (like 3.14±0.01), incl. Absolute, Relative, Interval and Normal Distribution models.</Description>
+    <Company>Vivid Orange</Company>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/MagmaWorks/Template-Repo/</RepositoryUrl>
-    <PackageIcon>MagmaWorks.png</PackageIcon>
+    <RepositoryUrl>https://github.com/VividOrange/Template-Repo/</RepositoryUrl>
+    <PackageIcon>VividOrange.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +30,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\IUncertainties\MagmaWorks.IUncertainties.csproj" />
+    <ProjectReference Include="..\IUncertainties\VividOrange.IUncertainties.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,7 +52,7 @@
       <Pack>True</Pack>
       <PackagePath>\Licenses\</PackagePath>
     </None>
-    <None Include="..\MagmaWorks.png">
+    <None Include="..\VividOrange.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

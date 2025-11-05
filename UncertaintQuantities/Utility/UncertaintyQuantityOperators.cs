@@ -1,7 +1,7 @@
 ﻿using System;
 using UnitsNet;
 
-namespace MagmaWorks.Uncertainties.Quantities.Utility
+namespace VividOrange.Uncertainties.Quantities.Utility
 {
     public static class UncertaintyQuantityOperators
     {

@@ -1,8 +1,8 @@
 ﻿#if NET8_0_OR_GREATER
 using System.Numerics;
-using MagmaWorks.Uncertainties.Scalar;
+using VividOrange.Uncertainties.Scalar;
 
-namespace MagmaWorks.Uncertainties.Utility;
+namespace VividOrange.Uncertainties.Utility;
 
 public static class GenericINumberExtensions
 {

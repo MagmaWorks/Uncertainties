@@ -1,7 +1,7 @@
 ﻿using System;
-using MagmaWorks.Taxonomy.Serialization;
+using VividOrange.Taxonomy.Serialization;
 
-namespace MagmaWorks.Uncertainties
+namespace VividOrange.Uncertainties
 {
     public interface IUncertainty<T> : ITaxonomySerializable
     {
